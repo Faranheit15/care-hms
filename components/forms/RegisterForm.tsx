@@ -17,8 +17,7 @@ import { Label } from "../ui/label";
 import { SelectItem } from "../ui/select";
 import Image from "next/image";
 
-export default function RegisterForm(props: User) {
-  const { user } = props;
+const RegisterForm = ({ user }: { user: User }) => {
   const router = useRouter();
   // 1. Define your form.
   const form = useForm<z.infer<typeof UserFormValidation>>({
@@ -308,4 +307,5 @@ export default function RegisterForm(props: User) {
       </form>
     </Form>
   );
-}
+};
+export default RegisterForm;
