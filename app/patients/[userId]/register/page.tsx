@@ -1,8 +1,12 @@
-import PatientForm from "@/components/forms/PatientForm";
 import Image from "next/image";
 import Link from "next/link";
+import RegisterForm from "@/components/forms/RegisterForm";
+import { getUser } from "@/lib/actions/patients.action";
 
-export default function Home() {
+const Register = async ({ params }: SearchParamProps) => {
+  const { userId } = params;
+  const user = await getUser(userId);
+
   return (
     <div className="flex h-screen max-h-screen">
       <section className="remove-scrollbar container my-auto">
@@ -14,7 +18,7 @@ export default function Home() {
             width={1000}
             className="mb-12 h-10 w-fit"
           />
-          <PatientForm />
+          <RegisterForm user={user} />
           <div className="text-14-regular mt-20 flex justify-between">
             <p className="justify-items-end text-dark-600 xl-text-left">
               © {new Date().getFullYear()}
@@ -24,12 +28,14 @@ export default function Home() {
         </div>
       </section>
       <Image
-        src="/assets/images/onboarding-img.png"
+        src="/assets/images/register-img.png"
         alt="doctor"
         height={1000}
         width={1000}
-        className="side-img max-w-[50%]"
+        className="side-img max-w-[40%]"
       />
     </div>
   );
-}
+};
+
+export default Register;
